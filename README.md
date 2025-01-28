@@ -37,10 +37,10 @@ Ví dụ, bạn muốn để dự án ở ổ D:\
 
 ### 2.3. Clone Dự Án Từ GitHub (Hoặc Nguồn Khác)
 
-Giả sử dự án có đường link Git là `https://github.com/username/student-management.git`, bạn làm như sau:
+Chạy lệnh sau:
 
 ```bash
-git clone https://github.com/username/student-management.git
+[git clone https://github.com/username/student-management.git](https://github.com/Pekotaker/student-management-be.git)
 ```
 
 Sau khi chạy lệnh xong, máy sẽ tải toàn bộ mã nguồn về thư mục `student-management` (hoặc tên bạn đã đặt).
@@ -119,12 +119,14 @@ Tạo một database tên `student_management_db` (nếu chưa có). Ví dụ v�
 CREATE DATABASE student_management_db;
 ```
 
+Hoặc bạn có thể tạo thủ công bằng PGAdmin
+
 ### 4.3. Cập Nhật Thông Tin Kết Nối Trong `database.py`
 
 Bên trong `backend/app/database.py` (hoặc `database.py`), bạn kiểm tra biến `DATABASE_URL`:
 
 ```python
-DATABASE_URL = "postgresql://postgres:password@localhost:5432/student_management_db"
+DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/student_management_db"
 ```
 
 - **Chỉnh** `password` thành mật khẩu thực tế của postgres trên máy bạn.
@@ -175,13 +177,13 @@ Hãy để cửa sổ này **mở** và **chạy**. Đừng tắt nó khi chuy�
 
 ### 7.1. Di Chuyển Vào Thư Mục `frontend`
 
-Mở **tab mới** hoặc **cửa sổ mới** của dòng lệnh:
+Tại một thư mục khác, mở **tab mới** hoặc **cửa sổ mới** của dòng lệnh:
 
 ```bash
-cd ../frontend
+git clone https://github.com/Pekotaker/student-management-fe.git
 ```
 
-(sao cho bạn đang ở `student-management/frontend`).
+Để clone dự án về thư mục đó
 
 ### 7.2. Cài Đặt Thư Viện
 
