@@ -231,8 +231,6 @@ git commit -m "Update x, y, z"
 git push
 ```
 
-- Nhưng như bạn nói, **bạn chưa biết Git**, tạm thời chỉ cần commit/push khi muốn đồng bộ code với người khác.
-
 ---
 
 ## 10. Xử Lý Một Số Lỗi Phổ Biến
