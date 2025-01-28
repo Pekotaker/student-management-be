@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment folders
+venv/
+.venv/
+
+# macOS metadata files
+.DS_Store
+
+# Windows metadata files
+Thumbs.db
+
+# If using dotenv for environment secrets
+.env
+
+# Editor / IDE metadata
+.vscode/
+.idea/
+
+# pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Mypy cache
+.mypy_cache/
+
+# Pylint Reports
+pylint-report.txt
+
+# Logs
+*.log
+
+# If you auto-generate a config for a tool that shouldn’t be tracked
+# (like local database credentials)
+local_config.yaml
+
+# Optional: Node or Yarn lockfiles if you have a backend folder containing some Node scripts
+package-lock.json
+yarn.lock
