@@ -51,7 +51,16 @@ def create_class(name: str, db: Session = Depends(get_db)):
     return {"id": new_class.id, "name": new_class.name}
 
 @router.post("/assign-teacher-to-class")
-def assign_teacher(teacher_id: int, class_id: int, db: Session = Depends(get_db)):
+def assign_teacher(payload: dict, db: Session = Depends(get_db)):
+    """
+    Assign a teacher to a class.
+    """
+    teacher_id = payload.get("teacher_id")
+    class_id = payload.get("class_id")
+    if not teacher_id or not class_id:
+        raise HTTPException(status_code=400, detail="Teacher ID and Class ID are required")
+    # Check if the teacher and class exist
+
     teacher = db.query(models.Teacher).filter(models.Teacher.id == teacher_id).first()
     class_obj = db.query(models.Class).filter(models.Class.id == class_id).first()
     if not teacher or not class_obj:
@@ -62,7 +71,13 @@ def assign_teacher(teacher_id: int, class_id: int, db: Session = Depends(get_db)
     return {"message": "Teacher assigned to class successfully"}
 
 @router.post("/create-schedule")
-def create_schedule(class_id: int, time_slot: int, subject: str, db: Session = Depends(get_db)):
+def create_schedule(payload: dict, db: Session = Depends(get_db)):
+    """
+    Create a schedule for a class.
+    """
+    class_id = payload.get("class_id")
+    time_slot = payload.get("time_slot")
+    subject = payload.get("subject")
     schedule = models.Schedule(class_id=class_id, time_slot=time_slot, subject=subject)
     db.add(schedule)
     db.commit()
