@@ -67,3 +67,31 @@ def create_schedule(class_id: int, time_slot: int, subject: str, db: Session = D
     db.add(schedule)
     db.commit()
     return {"id": schedule.id, "class_id": schedule.class_id, "time_slot": schedule.time_slot, "subject": schedule.subject}
+
+@router.get("/teachers")
+def get_teachers(db: Session = Depends(get_db)):
+    users = db.query(models.User).all()
+    teachers = db.query(models.Teacher).all()
+    subjects = db.query(models.Subject).all()
+    # Join the tables
+    result = []
+    for teacher in teachers:
+        user = db.query(models.User).filter(models.User.id == teacher.user_id).first()
+        subject = db.query(models.Subject).filter(models.Subject.id == teacher.subject_id).first()
+        result.append({
+            "teacher_id": teacher.id,
+            "user_id": user.id if user else None,
+            "name": user.name if user else "Unknown",
+            "subject": subject.name if subject else "Unknown",
+        })
+    return result
+
+@router.get("/classes")
+def get_classes(db: Session = Depends(get_db)):
+    classes = db.query(models.Class).all()
+    return [{"id": class_obj.id, "name": class_obj.name} for class_obj in classes]
+
+@router.get("/subjects")
+def get_subjects(db: Session = Depends(get_db)):
+    subjects = db.query(models.Subject).all()
+    return [{"id": subject.id, "name": subject.name} for subject in subjects]
